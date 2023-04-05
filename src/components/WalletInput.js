@@ -16,7 +16,8 @@ export default function WalletInput() {
     
     const [text, setText] = useState('');
     const [wallet, setWallet] = useState('');
-    const [name, setName] = useState([]);
+    const [walletData, setWalletData] = useState([]);
+    
 
     function onChangeHandler(event){
 
@@ -31,17 +32,23 @@ export default function WalletInput() {
         setWallet(text);
         const userTrack = text
         
+        
         alchemy.nft.getNftsForOwner(userTrack).then(data => {
             let walletData = data
-            const ownedNfts = walletData.ownedNfts.map(function (item) {
-                return item.contract?.name 
-                
-            })
             
-            setName(ownedNfts);
+            const ownedNfts = walletData.ownedNfts.map(item => {return {name : item.contract?.name, id: item.tokenId}})
+            setWalletData(ownedNfts)
+            console.log(ownedNfts)
+            
+            
+            
             
             
         })
+
+        
+
+        
         
 
     }
@@ -58,9 +65,11 @@ export default function WalletInput() {
         </form>
         
         <div>
-            {name?.map((item) => (<h1>{item}</h1>))}
+         {walletData.map((item, index) => (<><h1 key={index}>{item.name}</h1> <h1>{item.id}</h1></>))} 
         </div>
         
       </div>
     );
   }
+
+
