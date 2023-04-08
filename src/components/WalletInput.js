@@ -1,5 +1,5 @@
 import { Network, Alchemy } from 'alchemy-sdk';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 
 const settings = {
