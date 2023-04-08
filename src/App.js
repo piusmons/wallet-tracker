@@ -1,7 +1,5 @@
 import './App.css';
 import WalletInput from './components/WalletInput';
-import { Network, Alchemy } from 'alchemy-sdk';
-import React, { useState, useEffect, useContext } from 'react';
 
 function App() {
   
